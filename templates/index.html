@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compressor — {{ max_dimension }} / Q{{ quality }} / {{ output_format }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="room">
+        <div class="nameplate">
+            <div class="eyebrow"><span class="dot"></span>Simple / Compressor</div>
+            <h1>Load the tray</h1>
+            <div class="spec">Every frame is resized to <b>{{ max_dimension }}&times;{{ max_dimension }}</b>, quality <b>{{ quality }}</b>, and saved as <b>.{{ output_format|lower }}</b>.</div>
+        </div>
+
+        <form method="POST" action="/" enctype="multipart/form-data" id="compress-form">
+            <div class="sleeve" id="drop-zone">
+                <span class="corner-tl"></span><span class="corner-br"></span>
+                <p id="sleeve-text">Drop images here, or click to browse</p>
+                <span class="sub">Any number of files &middot; JPG, PNG, WebP, HEIC, etc.</span>
+                <input type="file" name="files" id="file-input" multiple accept="image/*" required>
+            </div>
+
+            <div class="contact-sheet">
+                <div class="sheet-label" id="sheet-label">Contact sheet</div>
+                <div class="grid" id="grid"></div>
+            </div>
+
+            <div class="action">
+                <button type="submit" id="submit-btn">Develop &amp; download</button>
+                <div class="hint" id="hint">Nothing is kept on the server after your download.</div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
