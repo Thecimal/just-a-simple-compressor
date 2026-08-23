@@ -34,7 +34,7 @@ except ImportError:
 # --------------------------------------------------------------------------
 # Configuration — override any of these with environment variables.
 # --------------------------------------------------------------------------
-MAX_DIMENSION = int(os.environ.get("MAX_DIMENSION", 1600))
+MAX_DIMENSION = int(os.environ.get("MAX_DIMENSION") or 1600)
 QUALITY = int(os.environ.get("QUALITY", 82))
 OUTPUT_FORMAT = os.environ.get("OUTPUT_FORMAT", "webp").lower().lstrip(".")
 MAX_FILES_PER_REQUEST = int(os.environ.get("MAX_FILES_PER_REQUEST", 50))
