@@ -9,7 +9,7 @@ that's wiped the moment it's done.
 Run it directly (`python app.py`) for local use, or see the Dockerfile /
 README for a production setup behind gunicorn.
 """
-
+import os
 import io
 import logging
 import os
@@ -134,7 +134,8 @@ def compress():
 
                 base_name = os.path.splitext(safe_name)[0] or "file"
                 output_filename = unique_output_name(base_name, used_names)
-                output_path = os.path.join(work_dir, f"{uuid.uuid4().hex}_{output_filename}")
+                output_path = os.path.join("/tmp", "compressed_image.jpg")
+                image.save(output_path)
 
                 try:
                     subprocess.run(
